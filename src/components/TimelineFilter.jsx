@@ -1,20 +1,27 @@
-// src/components/TimelineFilter.jsx
-import './TimelineFilter.css'
+import './TimelineFilter.css';
 
-function TimelineFilter({ periods, activeFilter, onFilterChange }) {
+function TimelineFilter({ currentFilter, onFilterChange }) {
+  const periods = [
+    { value: 'all', label: 'Всі періоди' },
+    { value: 'ancient', label: 'Стародавній світ' },
+    { value: 'middle', label: 'Середньовіччя' },
+    { value: 'new', label: 'Новий час' },
+    { value: 'modern', label: 'Сучасність' }
+  ];
+
   return (
     <div className="timeline-filter">
       {periods.map(period => (
         <button
-          key={period.id}
-          className={`filter-btn ${activeFilter === period.id ? 'active' : ''}`}
-          onClick={() => onFilterChange(period.id)}
+          key={period.value}
+          className={currentFilter === period.value ? 'active' : ''}
+          onClick={() => onFilterChange(period.value)}
         >
-          {period.name}
+          {period.label}
         </button>
       ))}
     </div>
-  )
+  );
 }
 
-export default TimelineFilter
+export default TimelineFilter;
