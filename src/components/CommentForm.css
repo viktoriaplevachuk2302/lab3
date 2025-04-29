@@ -1,0 +1,19 @@
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .comment-form input,
+  .comment-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .comment-form input:focus,
+  .comment-form textarea:focus {
+    outline: none;
+    border-color: #0057b7;
+  }

@@ -1,0 +1,62 @@
+.event-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .event-image-container {
+    position: relative;
+  }
+  
+  .event-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .event-century {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .event-content {
+    padding: 1.5rem;
+  }
+  
+  .event-content h3 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+  
+  .event-description {
+    color: var(--dark-color);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: var(--accent-color);
+  }

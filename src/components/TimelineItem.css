@@ -1,0 +1,35 @@
+.timeline-item {
+    min-width: 200px;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .timeline-item.modern {
+    background-color: #b0a3a3;
+    color: white;
+  }
+  
+  .timeline-item.modern h4 {
+    color: white;
+  }
+  
+  .timeline-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-item h4 {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .timeline-item p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
