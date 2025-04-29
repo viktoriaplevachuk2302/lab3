@@ -1,38 +1,15 @@
-// src/pages/Progress.jsx
-import { useState, useEffect } from 'react'
-import ProgressChart from '../components/ProgressChart'
-import './Progress.css'
+import './Progress.css';
 
 function Progress() {
-  const [progressData, setProgressData] = useState(() => {
-    const saved = localStorage.getItem('historyProgress')
-    return saved ? JSON.parse(saved) : []
-  })
-
-  // Оновлюємо прогрес при зміні
-  useEffect(() => {
-    localStorage.setItem('historyProgress', JSON.stringify(progressData))
-  }, [progressData])
-
   return (
     <div className="progress-page">
-      <div className="container">
-        <h1>Ваш прогрес</h1>
-        <ProgressChart data={progressData} />
-        
-        <div className="progress-stats">
-          <div className="stat-card">
-            <h3>Вивчено подій</h3>
-            <p>{progressData.filter(item => item.completed).length}</p>
-          </div>
-          <div className="stat-card">
-            <h3>Пройдено тестів</h3>
-            <p>{progressData.filter(item => item.type === 'test').length}</p>
-          </div>
-        </div>
+      <h1>Ваш прогрес у навчанні</h1>
+      <div className="progress-stats">
+        <p>Тут буде відображатися ваш прогрес у вивченні історичних подій.</p>
+        <p>Останні результати тестувань, досягнення та рекомендації.</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Progress
+export default Progress;

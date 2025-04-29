@@ -1,44 +1,42 @@
-import { useState } from 'react'
-import './CommentForm.css'
+import { useState } from 'react';
+import './CommentForm.css';
 
-function CommentForm({ onAddComment }) {
-  const [author, setAuthor] = useState('')
-  const [text, setText] = useState('')
+function CommentForm({ onSubmit }) {
+  const [name, setName] = useState('');
+  const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!text.trim()) return
-    
-    const newComment = {
-      author: author || 'Анонім',
-      text,
-      date: new Date().toLocaleString(),
+    e.preventDefault();
+    if (name && text) {
+      onSubmit({ name, text });
+      setName('');
+      setText('');
     }
-    
-    onAddComment(newComment)
-    setText('')
-    setAuthor('')
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="comment-form">
-      <input
-        type="text"
-        placeholder="Ваше ім'я (необов'язково)"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
-      <textarea
-        placeholder="Ваш коментар..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        required
-      />
-      <button type="submit" className="btn">
-        Написати коментар
-      </button>
+      <h3>Залишити відгук</h3>
+      <div className="form-group">
+        <label>Ім'я:</label>
+        <input 
+          type="text" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          required 
+        />
+      </div>
+      <div className="form-group">
+        <label>Коментар:</label>
+        <textarea 
+          value={text} 
+          onChange={(e) => setText(e.target.value)} 
+          required 
+        />
+      </div>
+      <button type="submit">Відправити</button>
     </form>
-  )
+  );
 }
 
-export default CommentForm
+export default CommentForm;

@@ -1,0 +1,128 @@
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .hero-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: #f8f4e9;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.1);
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+    color: #5a4a42;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1.2rem;
+    color: #5a4a42;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+  
+  .learn-more-btn {
+    background-color: #8b7355;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #6b5a46;
+  }
+  
+  .about-platform {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-platform h3 {
+    color: #8b7355;
+    margin-top: 0;
+  }
+  
+  .about-platform ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .about-platform li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .features-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .feature-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(139, 115, 85, 0.1);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(139, 115, 85, 0.15);
+  }
+  
+  .feature-card h2 {
+    color: #5a4a42;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-card p {
+    color: #777;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feature-link {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background-color: #8b7355;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .feature-link:hover {
+    background-color: #6b5a46;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+    
+    .hero-description {
+      font-size: 1rem;
+    }
+    
+    .features-section {
+      grid-template-columns: 1fr;
+    }
+  }

@@ -1,66 +1,70 @@
-import { useState } from 'react'
-import './TestQuestion.css'
+import './TestQuestion.css';
 
-function TestQuestion({ question, options, correctAnswer, type = 'multiple' }) {
-  const [selectedAnswer, setSelectedAnswer] = useState('')
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [userAnswer, setUserAnswer] = useState('')
+function TestQuestion({ question, onAnswer, userAnswer }) {
+  const handleChange = (e) => {
+    onAnswer(question.id, e.target.value);
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsSubmitted(true)
-    if (type === 'open') {
-      setSelectedAnswer(userAnswer)
-    }
-  }
-
-  const isCorrect = type === 'open' 
-    ? userAnswer.toLowerCase() === correctAnswer.toLowerCase()
-    : selectedAnswer === correctAnswer
+  const handleCheck = (value) => {
+    onAnswer(question.id, value);
+  };
 
   return (
-    <div className="card test-question">
-      <h3>{question}</h3>
-      <form onSubmit={handleSubmit}>
-        {type === 'multiple' ? (
-          <div className="options">
-            {options.map((option, index) => (
-              <div key={index} className="option">
-                <input
-                  type="radio"
-                  id={`option-${index}`}
-                  name="answer"
-                  value={option}
-                  checked={selectedAnswer === option}
-                  onChange={() => setSelectedAnswer(option)}
-                  disabled={isSubmitted}
-                />
-                <label htmlFor={`option-${index}`}>{option}</label>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <input
-            type="text"
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-            disabled={isSubmitted}
-            placeholder="Введіть вашу відповідь..."
-          />
-        )}
-        {!isSubmitted ? (
-          <button type="submit" className="btn">
-            Перевірити
-          </button>
-        ) : (
-          <div className={`feedback ${isCorrect ? 'correct' : 'incorrect'}`}>
-            {isCorrect ? '✅ Правильно!' : '❌ Неправильно!'}
-            {!isCorrect && <p>Правильна відповідь: {correctAnswer}</p>}
-          </div>
-        )}
-      </form>
+    <div className="test-question">
+      <h3>{question.question}</h3>
+      
+      {question.type === 'multiple' && (
+        <div className="options">
+          {question.options.map((option, index) => (
+            <label key={index}>
+              <input
+                type="radio"
+                name={`question-${question.id}`}
+                value={option}
+                checked={userAnswer === option}
+                onChange={handleChange}
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+      )}
+
+      {question.type === 'text' && (
+        <input
+          type="text"
+          value={userAnswer || ''}
+          onChange={(e) => onAnswer(question.id, e.target.value)}
+          placeholder="Введіть відповідь..."
+        />
+      )}
+
+      {question.type === 'truefalse' && (
+        <div className="true-false">
+          <label>
+            <input
+              type="radio"
+              name={`question-${question.id}`}
+              value="true"
+              checked={userAnswer === true}
+              onChange={() => handleCheck(true)}
+            />
+            Правда
+          </label>
+          <label>
+            <input
+              type="radio"
+              name={`question-${question.id}`}
+              value="false"
+              checked={userAnswer === false}
+              onChange={() => handleCheck(false)}
+            />
+            Неправда
+          </label>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default TestQuestion
+export default TestQuestion;

@@ -1,66 +1,33 @@
 import { useState } from 'react';
+import { commentsData } from '../data/comments';
 import CommentForm from '../components/CommentForm';
-import '../App.css';
+import './Comments.css';
 
 function Comments() {
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      author: 'Іван',
-      text: 'Дуже цікавий матеріал про Хрещення Русі!',
-      date: '2023-05-15 14:30'
-    },
-    {
-      id: 2,
-      author: 'Олена',
-      text: 'Хотілося б більше інформації про козацькі часи.',
-      date: '2023-05-16 09:15'
-    }
-  ]);
+  const [comments, setComments] = useState(commentsData);
 
-  const handleAddComment = (newComment) => {
+  const addComment = (newComment) => {
     setComments([...comments, {
-      id: Date.now(),
-      author: newComment.author,
+      id: comments.length + 1,
+      name: newComment.name,
       text: newComment.text,
-      date: new Date().toLocaleString('uk-UA')
+      date: new Date().toISOString().split('T')[0]
     }]);
   };
 
-  const handleDeleteComment = (id) => {
-    setComments(comments.filter(comment => comment.id !== id));
-  };
-
   return (
-    <div className="container">
-      <h1>Коментарі</h1>
-      <p>Поділіться своїми думками про історичні події України</p>
-      
-      <div className="comment-section">
-        <CommentForm onAddComment={handleAddComment} />
-        
-        <div className="comments-list">
-          {comments.length > 0 ? (
-            comments.map(comment => (
-              <div key={comment.id} className="card comment">
-                <div className="comment-header">
-                  <span className="comment-author">{comment.author}</span>
-                  <span className="comment-date">{comment.date}</span>
-                  <button 
-                    onClick={() => handleDeleteComment(comment.id)} 
-                    className="btn btn-small btn-danger"
-                  >
-                    Видалити
-                  </button>
-                </div>
-                <p className="comment-text">{comment.text}</p>
-              </div>
-            ))
-          ) : (
-            <p>Ще немає коментарів. Будьте першим!</p>
-          )}
-        </div>
+    <div className="comments-page">
+      <h1>Відгуки користувачів</h1>
+      <div className="comments-list">
+        {comments.map(comment => (
+          <div key={comment.id} className="comment">
+            <h3>{comment.name}</h3>
+            <p>{comment.text}</p>
+            <small>{comment.date}</small>
+          </div>
+        ))}
       </div>
+      <CommentForm onSubmit={addComment} />
     </div>
   );
 }
